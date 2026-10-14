@@ -7,7 +7,7 @@ Bento, split, arc, stepped funnel, perspective tunnel, spiral ring, warped colla
 with ready build recipes in CSS grid and three.js / React Three Fiber.
 
 [![npm](https://img.shields.io/npm/v/layouts-skill?color=cb3837&logo=npm)](https://www.npmjs.com/package/layouts-skill)
-[![license](https://img.shields.io/npm/l/layouts-skill)](LICENSE)
+[![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![Claude skill](https://img.shields.io/badge/Claude-skill-d97757)](https://docs.claude.com/en/docs/claude-code/skills)
 
 </div>
