@@ -1,0 +1,42 @@
+{
+  "name": "hero-layouts",
+  "version": "1.0.0",
+  "description": "Claude skill: 16 premium hero section layouts with CSS grid and three.js / React Three Fiber recipes",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bobcermak/hero-layouts.git"
+  },
+  "homepage": "https://github.com/bobcermak/hero-layouts#readme",
+  "bugs": {
+    "url": "https://github.com/bobcermak/hero-layouts/issues"
+  },
+  "bin": {
+    "hero-layouts": "bin/install.js"
+  },
+  "scripts": {
+    "postinstall": "node bin/install.js --postinstall"
+  },
+  "files": [
+    "bin",
+    "skill"
+  ],
+  "keywords": [
+    "claude",
+    "skill",
+    "hero",
+    "layout",
+    "threejs",
+    "react-three-fiber",
+    "landing-page",
+    "claude-code",
+    "claude-skill",
+    "ai",
+    "css-grid",
+    "r3f"
+  ],
+  "author": "Bob Čermák",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.7"
+  }
+}
