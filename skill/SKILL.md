@@ -1,5 +1,5 @@
 ---
-name: hero-layouts
+name: layouts-skill
 description: Catalog of 16 distinctive hero/landing section layouts (bento, split, arc, stepped, orbit, perspective tunnel, spiral ring, warped collage, light-smear carousel, cascading deck…) with build recipes in CSS grid and three.js / React Three Fiber. Use whenever building or redesigning a hero section, landing page, portfolio or product page that should look premium and not templated.
 ---
 

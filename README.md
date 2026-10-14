@@ -1,13 +1,13 @@
 <div align="center">
 
-# hero-layouts
+# layouts-skill
 
 **16 premium hero section layouts as a Claude skill.**
 Bento, split, arc, stepped funnel, perspective tunnel, spiral ring, warped collage, light-smear carousel, cascading deck…
 with ready build recipes in CSS grid and three.js / React Three Fiber.
 
-[![npm](https://img.shields.io/npm/v/hero-layouts?color=cb3837&logo=npm)](https://www.npmjs.com/package/hero-layouts)
-[![license](https://img.shields.io/npm/l/hero-layouts)](LICENSE)
+[![npm](https://img.shields.io/npm/v/layouts-skill?color=cb3837&logo=npm)](https://www.npmjs.com/package/layouts-skill)
+[![license](https://img.shields.io/npm/l/layouts-skill)](LICENSE)
 [![Claude skill](https://img.shields.io/badge/Claude-skill-d97757)](https://docs.claude.com/en/docs/claude-code/skills)
 
 </div>
@@ -20,25 +20,25 @@ Ask an AI for a landing page and you usually get the same thing: centered headli
 
 ## Install
 
-**Globally** — available in every project (`~/.claude/skills/hero-layouts`):
+**Globally** — available in every project (`~/.claude/skills/layouts-skill`):
 
 ```bash
-npx hero-layouts --global
+npx layouts-skill --global
 ```
 
-**Into the current project** (`./.claude/skills/hero-layouts`, commit it with your repo):
+**Into the current project** (`./.claude/skills/layouts-skill`, commit it with your repo):
 
 ```bash
-npx hero-layouts
+npx layouts-skill
 ```
 
 **As a dev dependency** — the skill is copied on every `npm install`, so the whole team stays on the same version:
 
 ```bash
-npm i -D hero-layouts
+npm i -D layouts-skill
 ```
 
-> **Update:** run the same command again (`npx hero-layouts@latest …`). The installer replaces the old copy.
+> **Update:** run the same command again (`npx layouts-skill@latest …`). The installer replaces the old copy.
 >
 > **pnpm / bun** block install scripts by default — use the `npx` variant there.
 
