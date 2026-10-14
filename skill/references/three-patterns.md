@@ -29,8 +29,22 @@ Fallback gate:
 ```ts
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches
 const webgl = (() => { try { return !!document.createElement('canvas').getContext('webgl2') } catch { return false } })()
-const use3D = webgl && !reduce
+const lowEnd = (navigator.hardwareConcurrency || 8) <= 4 || ((navigator as any).deviceMemory || 8) <= 4
+const use3D = webgl && !reduce && !lowEnd
 ```
+At runtime, wrap the scene in drei `<PerformanceMonitor onDecline={() => setUse3D(false)}>` so devices that still struggle drop to the static fallback.
+
+Loop wrap rule: every looping pattern below moves items with `t = ((i / N + scroll) % 1 + 1) % 1`. When `t` wraps 1 → 0 the item teleports, so **scale it to 0 near the wrap point** (`fadeEdge` below). Never let an item jump while it is visible.
+
+Aspect rule: drei `<Image scale={[w, h]}>` sets the mesh scale. Animating with `m.scale.setScalar(s)` turns every image into a square — always use `m.scale.set(w * s, h * s, 1)`.
+
+```ts
+// 1 in the middle of the range, eases to 0 within `edge` of both ends
+const fadeEdge = (t: number, edge = 0.08) =>
+  THREE.MathUtils.smoothstep(t, 0, edge) * (1 - THREE.MathUtils.smoothstep(t, 1 - edge, 1))
+```
+
+Color: custom `ShaderMaterial`s don't color-manage on their own. Set `texture.colorSpace = THREE.SRGBColorSpace` and end every fragment shader with `#include <colorspace_fragment>`, otherwise photos come out washed out.
 
 Image plane (reused everywhere):
 ```tsx
@@ -53,6 +67,7 @@ Cards on both walls of a corridor, camera looking down the axis. Center cards ar
 
 ```tsx
 const COUNT = 12
+const W = 1.2, H = 1.7
 function Tunnel({ images, scroll }) {
   const group = useRef<THREE.Group>(null!)
   useFrame(() => {
@@ -63,10 +78,12 @@ function Tunnel({ images, scroll }) {
       const d = Math.abs(t)                     // 0 center → 1 edge
       m.position.set(side * (0.3 + d * 4.2), 0, -8 + d * 8)  // edges come toward camera
       m.rotation.y = -side * THREE.MathUtils.lerp(0.2, 1.1, d)  // face inward like walls
-      m.scale.setScalar(THREE.MathUtils.lerp(0.35, 1.4, d))
+      // hide at the vanishing point (side flip) and at the outer edge (loop wrap)
+      const s = THREE.MathUtils.lerp(0.35, 1.4, d) * fadeEdge(d, 0.06)
+      m.scale.set(W * s, H * s, 1)
     })
   })
-  return <group ref={group}>{images.map((src, i) => <Image key={i} url={src} scale={[1.2, 1.7]} radius={0.08} />)}</group>
+  return <group ref={group}>{images.map((src, i) => <Image key={i} url={src} scale={[W, H]} radius={0.08} />)}</group>
 }
 ```
 Corner chrome (logo, menu, labels) stays DOM, `position:absolute` in the four corners.
@@ -74,14 +91,17 @@ Corner chrome (logo, menu, labels) stays DOM, `position:absolute` in the four co
 ## Spiral Ring (L07)
 
 ```tsx
+// W, H = card size passed to <Image scale={[W, H]}>
 items.forEach((m, i) => {
   const t = ((i / N + scroll) % 1 + 1) % 1
   const a = t * Math.PI * 2
   m.position.set(Math.cos(a) * 2.6, Math.sin(a) * 2.6, THREE.MathUtils.lerp(-3, 1.5, t))
-  m.scale.setScalar(THREE.MathUtils.lerp(0.3, 1.6, t))
+  // grows toward t=1, then shrinks to 0 just before the wrap so the biggest card never pops to the smallest spot
+  const s = THREE.MathUtils.lerp(0.3, 1.6, t) * (1 - THREE.MathUtils.smoothstep(t, 0.9, 1))
+  m.scale.set(W * s, H * s, 1)
 })
 ```
-Featured item = the one with t closest to 1; show its caption in DOM.
+Featured item = the one with the largest `s` (around t ≈ 0.88); show its caption in DOM.
 
 ## Parallax Planes (L04, L16)
 
@@ -112,7 +132,10 @@ void main(){
 }
 // fragment
 uniform sampler2D uTex; varying vec2 vUv;
-void main(){ gl_FragColor = texture2D(uTex, vUv); }
+void main(){
+  gl_FragColor = texture2D(uTex, vUv);
+  #include <colorspace_fragment>
+}
 ```
 Use `planeGeometry args={[w, h, 32, 16]}` (needs segments). Text panels: drei `<Html transform occlude>` on a flat plane or render text with drei `<Text>`.
 
@@ -136,7 +159,11 @@ void main(){
   float b = texture2D(uTex, vec2(sx - off * uDir, uv.y)).b;
   float a = 1.0 - smoothstep(0.85, 1.0, edge) * uSmear * 0.6;
   gl_FragColor = vec4(r, g, b, a);
+  #include <colorspace_fragment>
 }
+```
+```tsx
+<shaderMaterial args={[{ uniforms, vertexShader, fragmentShader }]} transparent depthWrite={false} />
 ```
 Side meshes are much wider than the poster (e.g. 4× width) so the smear has room; geometry curved like L08. Drive `uSmear` from |drag velocity| + a base of 0.7 for side cards.
 
@@ -146,10 +173,13 @@ Side meshes are much wider than the poster (e.g. 4× width) so the smear has roo
 const curve = new THREE.CatmullRomCurve3([
   new THREE.Vector3(-5, 3, -6), new THREE.Vector3(-1, 0.5, -2), new THREE.Vector3(3, -2, 1), new THREE.Vector3(6, -4, 3),
 ])
+// W, H = card size passed to <Image scale={[W, H]}>
 items.forEach((m, i) => {
   const t = ((i / N + scroll) % 1 + 1) % 1
   m.position.copy(curve.getPointAt(t))
   m.rotation.set(0, -0.4, -0.25 + Math.sin(i * 12.9) * 0.15)
+  const s = fadeEdge(t, 0.1)               // near end wraps back to the far end
+  m.scale.set(W * s, H * s, 1)
 })
 ```
 Postprocessing:

@@ -21,7 +21,8 @@ A library of hero section layouts collected from high-end design references. Use
 2. Pick a layout from the decision table below (or let the user pick — show 2–3 candidate IDs with one line each).
 3. Open `references/layouts.md` for that layout's structure, grid recipe and mobile rule.
 4. If the layout is marked **3D**, open `references/three-patterns.md` and use the matching pattern.
-5. Build, then check: real content everywhere, fallback works, no horizontal scroll at 375px, LCP image not blocked by the canvas.
+5. Apply the **Craft** section below (type, spacing, motion).
+6. Build, then check: real content everywhere, fallback works, no horizontal scroll at 375px, LCP image not blocked by the canvas.
 
 ## Decision table
 
@@ -43,6 +44,18 @@ A library of hero section layouts collected from high-end design references. Use
 | L14 | Product Spotlight | CSS grid (+3D model opt.) | E-shop product hero: image, badge, price, CTA |
 | L15 | Angular Bento | CSS clip-path | Premium product / outdoor / sport brand |
 | L16 | Arc Halo | CSS / 3D-lite | Startup landing, huge title, two CTAs |
+
+## Craft
+
+The layout is half the result — the other half is type, spacing and motion. If the project has a brand, use it. If it doesn't, don't fall back to defaults; make deliberate choices:
+
+- **Type:** one expressive display face for the H1 (grotesk like Inter Display / Neue Montreal / Satoshi, or a serif like Fraunces / Instrument Serif / PP Editorial), one quiet text face. Display: `clamp(48px, 8vw, 144px)`, `line-height: 0.9–1.0`, `letter-spacing: -0.02 to -0.04em`. Body 16–18px, `line-height: 1.5`, max 60ch.
+- **Scale & contrast:** big jumps between levels (H1 ≥ 4× the body size). Small meta labels in uppercase, 11–13px, `letter-spacing: 0.08em`. Contrast in size makes it look premium, not decoration.
+- **Spacing:** one scale (4/8 px base), generous outer padding (`clamp(16px, 4vw, 48px)`), consistent gaps inside bento grids (8–16px). Leave the deliberate empty areas empty.
+- **Color:** 1 background, 1 ink, 1 accent; the accent appears 1–3 times max (CTA, one word, one detail). Ink is near-black/near-white, never pure `#000` on `#fff` for large areas.
+- **Images:** consistent treatment (same crop ratio family, same grade/tone). Real photos > stock > nothing; no placeholder gradients.
+- **Motion:** entrance stagger 40–80ms, durations 400–900ms, easing `cubic-bezier(0.16, 1, 0.3, 1)` (expo-out) for reveals; nothing bounces. Hover 150–250ms. Total intro under 1.2s, CTA usable immediately.
+- **Details that sell it:** rounded hero card on a contrasting page, a tiny meta line ("Est. 2019 · Prague"), real numbers, one micro-interaction on the CTA.
 
 ## Stack defaults
 

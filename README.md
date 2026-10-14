@@ -86,6 +86,7 @@ The skill makes Claude follow these on every build:
 - **3D is progressive enhancement** — `prefers-reduced-motion`, no WebGL or low-end mobile get a static composition.
 - **One hero, one idea** — a single signature effect per section.
 - **Mobile first-class** — every layout has its own collapse rule, checked at 375 px with no horizontal scroll.
+- **Craft** — deliberate type scale, spacing, color and motion timing, even when the project has no brand yet.
 - **Performance** — capped DPR, paused off-screen rendering, LCP image never blocked by the canvas.
 
 ## Stack
