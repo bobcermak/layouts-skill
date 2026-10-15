@@ -1,12 +1,12 @@
 <div align="center">
 
-# layouts-skill
+# ui-skills-kit
 
-**16 premium hero section layouts as a Claude skill.**
-Bento, split, arc, stepped funnel, perspective tunnel, spiral ring, warped collage, light-smear carousel, cascading deck…
-with ready build recipes in CSS grid and three.js / React Three Fiber.
+**Claude skills for UI that doesn't look AI-generated.**
+16 premium section layouts with reference wireframes, automatic section → layout mapping, anti-AI typography rules,
+ready build recipes in CSS grid and three.js / React Three Fiber, plus Vercel's [find-skills](https://skills.sh/vercel-labs/skills) to discover more.
 
-[![npm](https://img.shields.io/npm/v/layouts-skill?color=cb3837&logo=npm)](https://www.npmjs.com/package/layouts-skill)
+[![npm](https://img.shields.io/npm/v/ui-skills-kit?color=cb3837&logo=npm)](https://www.npmjs.com/package/ui-skills-kit)
 [![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![Claude skill](https://img.shields.io/badge/Claude-skill-d97757)](https://docs.claude.com/en/docs/claude-code/skills)
 
@@ -16,47 +16,66 @@ with ready build recipes in CSS grid and three.js / React Three Fiber.
 
 ## Why
 
-Ask an AI for a landing page and you usually get the same thing: centered headline, two buttons, gradient blob. This skill gives Claude a catalog of layouts taken from high-end design references, plus strict rules for turning them into **finished, production-grade sections** — real content, accessible markup, a static fallback for every 3D effect and a proper mobile layout.
+Ask an AI for a landing page and you usually get the same thing: centered headline, two buttons, gradient blob, Inter everywhere. This kit gives Claude a catalog of layouts taken from high-end design references, picks one for every section on its own, and enforces rules for turning them into **finished, production-grade sections**: real content, deliberate typography, accessible markup, a static fallback for every 3D effect and a proper mobile layout.
+
+| Skill | What it does |
+|---|---|
+| `ui-layouts` | 16 layouts with wireframes, section → layout map, typography rules, CSS + R3F recipes |
+| `find-skills` | Vercel's skill finder: ask *"is there a skill for…"* and Claude searches [skills.sh](https://skills.sh) |
 
 ## Install
 
-**Globally** — available in every project (`~/.claude/skills/layouts-skill`):
+**Globally**, available in every project (`~/.claude/skills`):
 
 ```bash
-npx layouts-skill --global
+npx ui-skills-kit --global
 ```
 
-**Into the current project** (`./.claude/skills/layouts-skill`, commit it with your repo):
+**Into the current project** (`./.claude/skills`, commit it with your repo):
 
 ```bash
-npx layouts-skill
+npx ui-skills-kit
 ```
 
-**As a dev dependency** — the skill is copied on every `npm install`, so the whole team stays on the same version:
+Both install `ui-layouts` and then fetch the latest `find-skills` from [vercel-labs/skills](https://github.com/vercel-labs/skills). If find-skills is already installed, that step is skipped. Use `--no-find-skills` to skip it.
+
+**As a dev dependency**, the skills are copied on every `npm install`, so the whole team stays on the same version (find-skills isn't fetched here, to keep installs offline):
 
 ```bash
-npm i -D layouts-skill
+npm i -D ui-skills-kit
 ```
 
-> **Update:** run the same command again (`npx layouts-skill@latest …`). The installer replaces the old copy.
+**With the [skills CLI](https://github.com/vercel-labs/skills)** (also works for Cursor, Codex and other agents):
+
+```bash
+npx skills add bobcermak/ui-skills-kit
+```
+
+> **Update:** run the same command again (`npx ui-skills-kit@latest …`). The installer replaces the old copy.
 >
-> **pnpm / bun** block install scripts by default — use the `npx` variant there.
+> **Coming from `layouts-skill`?** The installer removes the old `.claude/skills/layouts-skill` folder automatically.
+>
+> **pnpm / bun** block install scripts by default, so use the `npx` variant there.
 
 ## Usage
 
-Nothing to configure. Ask Claude for a hero, landing page, portfolio or product page and the skill loads automatically.
+Nothing to configure. Ask Claude for a hero, landing page, page section, portfolio or product page and the skill loads automatically.
 
-Let it choose:
+Let it choose. Claude picks a layout for every section and tells you in one line:
 
-> Build a hero for our coffee roastery landing page. We have 3 product photos and one CTA.
+> Build a landing page for our coffee roastery: hero, our beans, about us, newsletter.
+>
+> → Hero → L14 Product Spotlight · Beans → L15 Angular Bento · About → L02 Anchored Split · Newsletter → L12 Stepped Funnel
 
 Or name a layout:
 
 > Make the hero for the guesthouse site as **L09 Arch Frame**, with the 5 room photos as slides.
 
-Claude reads your content (number of images, title length, CTAs…), picks or suggests 2–3 fitting layouts, then builds the chosen one.
+Claude reads your content (number of images, title length, CTAs…), picks the layout from the section map, checks the wireframe, and builds it. Page-level rules keep it varied: no layout repeats, at most one 3D section per page, and dense and airy sections alternate. Ask for options and it shows 2–3 candidates instead.
 
 ## Layouts
+
+Every layout ships with a reference wireframe in `skills/ui-layouts/assets/layouts/`.
 
 | ID | Name | Type | Best for |
 |----|------|------|----------|
@@ -85,6 +104,8 @@ The skill makes Claude follow these on every build:
 - **Text stays in the DOM** — headings and CTAs are HTML (SEO, a11y); three.js renders only imagery and background.
 - **3D is progressive enhancement** — `prefers-reduced-motion`, no WebGL or low-end mobile get a static composition.
 - **One hero, one idea** — a single signature effect per section.
+- **Section-aware** — layouts adapt to inner sections (no nav, `<h2>`, auto height), never repeat on a page.
+- **Typography that isn't AI-default** — pairings by brand character, no Inter/Poppins/Montserrat headlines, no gradient text, tabular numbers, real quotes and non-breaking spaces (Czech-aware).
 - **Mobile first-class** — every layout has its own collapse rule, checked at 375 px with no horizontal scroll.
 - **Craft** — deliberate type scale, spacing, color and motion timing, even when the project has no brand yet.
 - **Performance** — capped DPR, paused off-screen rendering, LCP image never blocked by the canvas.
@@ -100,17 +121,21 @@ The skill only contains instructions — it adds no runtime dependencies to your
 ## What's inside
 
 ```
-skill/
+bin/install.js                    installer (skills + find-skills)
+skills/ui-layouts/
 ├── SKILL.md                      rules, workflow, decision table
+├── assets/layouts/               16 reference wireframes (L01–L16)
 └── references/
     ├── layouts.md                all 16 layouts: regions, grid recipe, mobile rule
+    ├── sections.md               section → layout map + page-level rules
+    ├── typography.md             font pairings, scale, anti-AI checklist
     └── three-patterns.md         R3F code: tunnel, spiral, bend + smear shaders,
                                   cascade, parallax planes, product model
 ```
 
 ## Contributing
 
-Ideas for new layouts or fixes are welcome — open an issue or a PR. New layouts should include regions, a grid recipe and a mobile rule, following the format in `skill/references/layouts.md`.
+Ideas for new layouts or fixes are welcome — open an issue or a PR. New layouts should include a wireframe PNG, regions, a grid recipe, a mobile rule and a row in `sections.md`, following the format in `skills/ui-layouts/references/layouts.md`.
 
 ## License
 

@@ -1,15 +1,15 @@
 ---
-name: layouts-skill
-description: Catalog of 16 distinctive hero/landing section layouts (bento, split, arc, stepped, orbit, perspective tunnel, spiral ring, warped collage, light-smear carousel, cascading deck…) with build recipes in CSS grid and three.js / React Three Fiber. Use whenever building or redesigning a hero section, landing page, portfolio or product page that should look premium and not templated.
+name: ui-layouts
+description: Catalog of 16 distinctive section layouts with reference wireframes (bento, split, arc, stepped, orbit, perspective tunnel, spiral ring, warped collage, light-smear carousel, cascading deck…), an automatic section → layout map (hero, features, about, gallery, product, CTA…), anti-AI typography rules and build recipes in CSS grid and three.js / React Three Fiber. Use whenever building or redesigning a hero, landing page, page section, portfolio or product page that should look premium and not templated.
 ---
 
-# Hero Layouts
+# UI Layouts
 
-A library of hero section layouts collected from high-end design references. Use it to pick a layout that fits the content, then build it as a **real, finished section** — never as a wireframe.
+A library of section layouts collected from high-end design references, each with a reference image in `assets/layouts/`. Use it to pick a layout for every section automatically, then build it as a **real, finished section**, never as a wireframe.
 
 ## Hard rules
 
-1. **Wireframe colors are placeholders.** The pastel blocks in the references (pink nav, blue title, purple image…) only mark regions. Never ship pastel boxes labeled "Title" / "Image". Fill every region with real content, real typography and the project's own palette/brand.
+1. **Wireframe colors are placeholders.** The pastel blocks in the references (pink nav, blue title, purple image…) only mark regions. Never ship pastel boxes labeled "Title" / "Image". Fill every region with real content, real typography and the project's own palette/brand. L10 and L11 are screenshots of real builds: copy the effect, not their sample photos, posters or the capture toolbar at the bottom.
 2. **Text stays in the DOM.** Headings, copy and CTAs are HTML (SEO, a11y, selectable). three.js renders imagery, cards and background only — never the H1.
 3. **3D is progressive enhancement.** Every 3D layout must have a static fallback: `prefers-reduced-motion`, no WebGL, or low-end mobile → render the same composition with plain `<img>` + CSS transforms.
 4. **One hero, one idea.** Don't stack two 3D effects in one section. Pick one signature move.
@@ -17,14 +17,16 @@ A library of hero section layouts collected from high-end design references. Use
 
 ## Workflow
 
-1. Read the content you have: How many images? Is there a product, a number, a video? How long is the title? Is there one CTA or two?
-2. Pick a layout from the decision table below (or let the user pick — show 2–3 candidate IDs with one line each).
-3. Open `references/layouts.md` for that layout's structure, grid recipe and mobile rule.
+1. **List the sections** you are building (one hero, or a whole page: hero, features, about, gallery, CTA…). For each one, read the content: How many images? Is there a product, a number, a video? How long is the title? Is there one CTA or two?
+2. **Pick a layout per section automatically** with `references/sections.md` (section → layout map + page-level rules: no repeats, one 3D section per page, rhythm). Don't ask. State the picks in one line each (`Hero → L09 Arch Frame (5 room photos)`). Only show 2–3 candidates when the user asks for options. A layout the user names always wins.
+3. **Look at the reference image** for each picked layout (`assets/layouts/Lxx-*.png`, linked in `references/layouts.md`) and match its proportions and region placement. Then read that layout's grid recipe and mobile rule.
 4. If the layout is marked **3D**, open `references/three-patterns.md` and use the matching pattern.
-5. Apply the **Craft** section below (type, spacing, motion).
-6. Build, then check: real content everywhere, fallback works, no horizontal scroll at 375px, LCP image not blocked by the canvas.
+5. **Choose type with `references/typography.md`** (pairing by brand character, banned defaults, AI tells), then apply the **Craft** section below.
+6. Build, then check: real content everywhere, fallback works, no horizontal scroll at 375px, LCP image not blocked by the canvas, none of the AI tells from `typography.md` §5.
 
 ## Decision table
+
+Hero picks at a glance. For other sections, use `references/sections.md`.
 
 | ID | Name | Type | Best for |
 |----|------|------|----------|
@@ -49,7 +51,7 @@ A library of hero section layouts collected from high-end design references. Use
 
 The layout is half the result — the other half is type, spacing and motion. If the project has a brand, use it. If it doesn't, don't fall back to defaults; make deliberate choices:
 
-- **Type:** one expressive display face for the H1 (grotesk like Inter Display / Neue Montreal / Satoshi, or a serif like Fraunces / Instrument Serif / PP Editorial), one quiet text face. Display: `clamp(48px, 8vw, 144px)`, `line-height: 0.9–1.0`, `letter-spacing: -0.02 to -0.04em`. Body 16–18px, `line-height: 1.5`, max 60ch.
+- **Type:** follow `references/typography.md`. Pick the pairing by brand character, never Inter/Roboto/Poppins/Montserrat as the display face, and use no gradient headline text. Display: `clamp(48px, 8vw, 144px)`, `line-height: 0.9–1.0`, `letter-spacing: -0.02 to -0.04em`. Body 16–18px, `line-height: 1.5`, max 60ch.
 - **Scale & contrast:** big jumps between levels (H1 ≥ 4× the body size). Small meta labels in uppercase, 11–13px, `letter-spacing: 0.08em`. Contrast in size makes it look premium, not decoration.
 - **Spacing:** one scale (4/8 px base), generous outer padding (`clamp(16px, 4vw, 48px)`), consistent gaps inside bento grids (8–16px). Leave the deliberate empty areas empty.
 - **Color:** 1 background, 1 ink, 1 accent; the accent appears 1–3 times max (CTA, one word, one detail). Ink is near-black/near-white, never pure `#000` on `#fff` for large areas.

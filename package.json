@@ -1,24 +1,24 @@
 {
-  "name": "layouts-skill",
-  "version": "1.0.0",
-  "description": "Claude skill: 16 premium hero section layouts with CSS grid and three.js / React Three Fiber recipes",
+  "name": "ui-skills-kit",
+  "version": "2.0.0",
+  "description": "Claude skill kit: 16 premium section layouts with reference wireframes, automatic section → layout mapping, anti-AI typography rules, CSS grid + three.js / R3F recipes — plus Vercel's find-skills",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bobcermak/layouts-skill.git"
+    "url": "git+https://github.com/bobcermak/ui-skills-kit.git"
   },
-  "homepage": "https://github.com/bobcermak/layouts-skill#readme",
+  "homepage": "https://github.com/bobcermak/ui-skills-kit#readme",
   "bugs": {
-    "url": "https://github.com/bobcermak/layouts-skill/issues"
+    "url": "https://github.com/bobcermak/ui-skills-kit/issues"
   },
   "bin": {
-    "layouts-skill": "bin/install.js"
+    "ui-skills-kit": "bin/install.js"
   },
   "scripts": {
     "postinstall": "node bin/install.js --postinstall"
   },
   "files": [
     "bin",
-    "skill"
+    "skills"
   ],
   "keywords": [
     "claude",
@@ -32,7 +32,12 @@
     "claude-skill",
     "ai",
     "css-grid",
-    "r3f"
+    "r3f",
+    "ui",
+    "typography",
+    "skills",
+    "find-skills",
+    "agent-skills"
   ],
   "author": "Bob Čermák",
   "license": "MIT",
