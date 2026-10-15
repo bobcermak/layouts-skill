@@ -77,24 +77,24 @@ Claude reads your content (number of images, title length, CTAs…), picks the l
 
 Every layout ships with a reference wireframe in `skills/ui-layouts/assets/layouts/`.
 
-| ID | Name | Type | Best for |
-|----|------|------|----------|
-| L01 | Title Banner | CSS | Strong headline + one wide photo (restaurants, guesthouses) |
-| L02 | Anchored Split | CSS | Editorial / portfolio, one tall portrait image |
-| L03 | Centered Showcase | CSS | SaaS / app — headline, CTA, product screenshot below |
-| L04 | Orbit Scatter | CSS / 3D-lite | Creative studio, many small images, playful |
-| L05 | Minimal Center | CSS | Text-led, agency, manifesto, no imagery |
-| L06 | Perspective Tunnel | **3D** | Gallery / portfolio with 8–14 items, "journey" feel |
-| L07 | Spiral Ring | **3D** / CSS | Collections, case studies, timeline of work |
-| L08 | Warped Collage | **3D** | Content-rich brand: media + text + cards floating |
-| L09 | Arch Frame | CSS (SVG mask) | Slideshow with index number + title, event, tour |
-| L10 | Light Smear Carousel | **3D** shader | Fashion, music, posters — 3 hero visuals |
-| L11 | Cascading Deck | **3D** | Archive / editorial, many posters, scroll-driven |
-| L12 | Stepped Funnel | CSS (clip-path) | Bold launch page, single CTA |
-| L13 | Bento Triptych | CSS grid | Brand / product overview with many small modules |
-| L14 | Product Spotlight | CSS grid (+3D model) | E-shop product hero: image, badge, price, CTA |
-| L15 | Angular Bento | CSS clip-path | Premium product / outdoor / sport brand |
-| L16 | Arc Halo | CSS / 3D-lite | Startup landing, huge title, two CTAs |
+| ID | Preview | Name | Type | Best for |
+|----|---------|------|------|----------|
+| L01 | <img src="skills/ui-layouts/assets/layouts/L01-title-banner.png" width="140" alt="Title Banner wireframe"> | Title Banner | CSS | Strong headline + one wide photo (restaurants, guesthouses) |
+| L02 | <img src="skills/ui-layouts/assets/layouts/L02-anchored-split.png" width="140" alt="Anchored Split wireframe"> | Anchored Split | CSS | Editorial / portfolio, one tall portrait image |
+| L03 | <img src="skills/ui-layouts/assets/layouts/L03-centered-showcase.png" width="140" alt="Centered Showcase wireframe"> | Centered Showcase | CSS | SaaS / app — headline, CTA, product screenshot below |
+| L04 | <img src="skills/ui-layouts/assets/layouts/L04-orbit-scatter.png" width="140" alt="Orbit Scatter wireframe"> | Orbit Scatter | CSS / 3D-lite | Creative studio, many small images, playful |
+| L05 | <img src="skills/ui-layouts/assets/layouts/L05-minimal-center.png" width="140" alt="Minimal Center wireframe"> | Minimal Center | CSS | Text-led, agency, manifesto, no imagery |
+| L06 | <img src="skills/ui-layouts/assets/layouts/L06-perspective-tunnel.png" width="140" alt="Perspective Tunnel wireframe"> | Perspective Tunnel | **3D** | Gallery / portfolio with 8–14 items, "journey" feel |
+| L07 | <img src="skills/ui-layouts/assets/layouts/L07-spiral-ring.png" width="140" alt="Spiral Ring wireframe"> | Spiral Ring | **3D** / CSS | Collections, case studies, timeline of work |
+| L08 | <img src="skills/ui-layouts/assets/layouts/L08-warped-collage.png" width="140" alt="Warped Collage wireframe"> | Warped Collage | **3D** | Content-rich brand: media + text + cards floating |
+| L09 | <img src="skills/ui-layouts/assets/layouts/L09-arch-frame.png" width="140" alt="Arch Frame wireframe"> | Arch Frame | CSS (SVG mask) | Slideshow with index number + title, event, tour |
+| L10 | <img src="skills/ui-layouts/assets/layouts/L10-light-smear-carousel.png" width="140" alt="Light Smear Carousel wireframe"> | Light Smear Carousel | **3D** shader | Fashion, music, posters — 3 hero visuals |
+| L11 | <img src="skills/ui-layouts/assets/layouts/L11-cascading-deck.png" width="140" alt="Cascading Deck wireframe"> | Cascading Deck | **3D** | Archive / editorial, many posters, scroll-driven |
+| L12 | <img src="skills/ui-layouts/assets/layouts/L12-stepped-funnel.png" width="140" alt="Stepped Funnel wireframe"> | Stepped Funnel | CSS (clip-path) | Bold launch page, single CTA |
+| L13 | <img src="skills/ui-layouts/assets/layouts/L13-bento-triptych.png" width="140" alt="Bento Triptych wireframe"> | Bento Triptych | CSS grid | Brand / product overview with many small modules |
+| L14 | <img src="skills/ui-layouts/assets/layouts/L14-product-spotlight.png" width="140" alt="Product Spotlight wireframe"> | Product Spotlight | CSS grid (+3D model) | E-shop product hero: image, badge, price, CTA |
+| L15 | <img src="skills/ui-layouts/assets/layouts/L15-angular-bento.png" width="140" alt="Angular Bento wireframe"> | Angular Bento | CSS clip-path | Premium product / outdoor / sport brand |
+| L16 | <img src="skills/ui-layouts/assets/layouts/L16-arc-halo.png" width="140" alt="Arc Halo wireframe"> | Arc Halo | CSS / 3D-lite | Startup landing, huge title, two CTAs |
 
 ## Built-in rules
 
