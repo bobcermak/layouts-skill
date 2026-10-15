@@ -198,6 +198,27 @@ Postprocessing:
 ```
 Compress GLB with `gltf-transform optimize` (draco/meshopt + webp textures) — target < 2 MB.
 
+## Multiple 3D sections (3D mode)
+
+One fixed canvas behind the page, with each section rendering into its own DOM box through drei `<View>`. This means one WebGL context, shared textures, and no context-limit crashes.
+```tsx
+// layout: one canvas for the whole page
+<Canvas className="!fixed inset-0 pointer-events-none" eventSource={document.body} dpr={[1, 1.75]}>
+  <View.Port />
+</Canvas>
+
+// any section
+<section className="relative h-[100svh]">
+  <View className="absolute inset-0">
+    <PerspectiveCamera makeDefault position={[0, 0, 6]} fov={45} />
+    <SceneLighting />  {/* shared component: same env + lights everywhere */}
+    <Tunnel />
+  </View>
+  <h2 className="relative">…</h2>
+</section>
+```
+Views outside the viewport aren't rendered. Keep one `SceneLighting` and one damping constant in a shared module, so all sections feel like the same world.
+
 ## Performance checklist
 
 - Textures: webp/avif, max 1600px long edge, `useTexture.preload`.

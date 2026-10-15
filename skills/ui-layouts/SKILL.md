@@ -1,6 +1,6 @@
 ---
 name: ui-layouts
-description: Catalog of 16 distinctive section layouts with reference wireframes (bento, split, arc, stepped, orbit, perspective tunnel, spiral ring, warped collage, light-smear carousel, cascading deck…), an automatic section → layout map (hero, features, about, gallery, product, CTA…), anti-AI typography rules and build recipes in CSS grid and three.js / React Three Fiber. Use whenever building or redesigning a hero, landing page, page section, portfolio or product page that should look premium and not templated.
+description: Catalog of 16 distinctive section layouts with reference wireframes (bento, split, arc, stepped, orbit, perspective tunnel, spiral ring, warped collage, light-smear carousel, cascading deck…), an automatic section → layout map (hero, features, about, gallery, product, CTA…), anti-AI typography rules, a whole-page 3D mode when three.js is requested, and build recipes in CSS grid and three.js / React Three Fiber. Use whenever building or redesigning a hero, landing page, page section, portfolio or product page that should look premium and not templated.
 ---
 
 # UI Layouts
@@ -18,7 +18,7 @@ A library of section layouts collected from high-end design references, each wit
 ## Workflow
 
 1. **List the sections** you are building (one hero, or a whole page: hero, features, about, gallery, CTA…). For each one, read the content: How many images? Is there a product, a number, a video? How long is the title? Is there one CTA or two?
-2. **Pick a layout per section automatically** with `references/sections.md` (section → layout map + page-level rules: no repeats, one 3D section per page, rhythm). Don't ask. State the picks in one line each (`Hero → L09 Arch Frame (5 room photos)`). Only show 2–3 candidates when the user asks for options. A layout the user names always wins.
+2. **Pick a layout per section automatically** with `references/sections.md` (section → layout map + page-level rules: no repeats, one 3D section per page, rhythm). Don't ask. State the picks in one line each (`Hero → L09 Arch Frame (5 room photos)`). Only show 2–3 candidates when the user asks for options. A layout the user names always wins. **If the user explicitly asks for three.js / WebGL / R3F / a 3D site, switch to 3D mode** (`sections.md` §5): the hero is always 3D, up to 3 coherent 3D sections run through the page, and text-heavy sections stay CSS.
 3. **Look at the reference image** for each picked layout (`assets/layouts/Lxx-*.png`, linked in `references/layouts.md`) and match its proportions and region placement. Then read that layout's grid recipe and mobile rule.
 4. If the layout is marked **3D**, open `references/three-patterns.md` and use the matching pattern.
 5. **Choose type with `references/typography.md`** (pairing by brand character, banned defaults, AI tells), then apply the **Craft** section below.

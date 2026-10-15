@@ -104,6 +104,7 @@ The skill makes Claude follow these on every build:
 - **Text stays in the DOM** — headings and CTAs are HTML (SEO, a11y); three.js renders only imagery and background.
 - **3D is progressive enhancement** — `prefers-reduced-motion`, no WebGL or low-end mobile get a static composition.
 - **One hero, one idea** — a single signature effect per section.
+- **3D mode** — say "three.js" / "R3F" / "3D site" and the whole page is mapped: 3D hero, up to 3 coherent 3D sections (never adjacent, one shared canvas, one scene language), text sections stay CSS.
 - **Section-aware** — layouts adapt to inner sections (no nav, `<h2>`, auto height), never repeat on a page.
 - **Typography that isn't AI-default** — pairings by brand character, no Inter/Poppins/Montserrat headlines, no gradient text, tabular numbers, real quotes and non-breaking spaces (Czech-aware).
 - **Mobile first-class** — every layout has its own collapse rule, checked at 375 px with no horizontal scroll.
